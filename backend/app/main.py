@@ -26,6 +26,10 @@ def root():
         "version": settings.app_version
         }
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 @app.post("/calculate", response_model=NutritionResponse)
 def calculate(data: NutritionRequest):
     result = calculate_macros(
