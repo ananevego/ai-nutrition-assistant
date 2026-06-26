@@ -64,6 +64,14 @@ docker compose up --build
 
 API: <http://127.0.0.1:8000>
 
+## Run Tests
+
+From the repository root:
+
+```bash
+backend/venv/bin/python -m pytest -q
+```
+
 ## API Example
 
 ```bash
@@ -89,4 +97,3 @@ curl -X POST http://127.0.0.1:8000/calculate \
 - Deploy the application
 - Describe infrastructure with Terraform
 - Add logs, healthchecks, and monitoring
-

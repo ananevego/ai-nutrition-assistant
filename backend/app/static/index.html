@@ -151,6 +151,29 @@ async function calculate() {
         }
     );
 
+    if (response.status === 422) {
+    document.getElementById("result").innerHTML =
+        "Проверьте введённые данные";
+
+    return;
+    }
+
+    if (response.status === 500) {
+    document.getElementById("result").innerHTML =
+        "Ошибка сервера";
+
+    return;
+    }
+
+    if (!response.ok) {
+        document.getElementById("result").innerHTML =
+           `Ошибка сервера: ${response.status}`;
+
+        return;
+    }
+
+    
+
     const data = await response.json();
 
     document.getElementById("result").innerHTML = `
