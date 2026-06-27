@@ -15,8 +15,7 @@ def test_root():
     response = client.get("/")
 
     assert response.status_code == 200
-    assert "message" in response.json()
-    assert "version" in response.json()
+    assert "AI Nutrition Assistant" in response.text
 
 
 def test_calculate():

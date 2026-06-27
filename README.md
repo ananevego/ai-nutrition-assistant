@@ -64,6 +64,17 @@ docker compose up --build
 
 API: <http://127.0.0.1:8000>
 
+## Environment Variables
+
+You can override the app metadata without touching code:
+
+```bash
+APP_NAME=My Nutrition App
+APP_VERSION=2.0.0
+```
+
+The container defaults are documented in [`backend/.env.example`](/Users/egorananev/Desktop/projects/ai-nutrition-assistant/backend/.env.example).
+
 ## Run Tests
 
 From the repository root:

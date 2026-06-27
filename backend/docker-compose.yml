@@ -6,8 +6,8 @@ services:
       - "8000:8000"
 
     environment:
-      APP_NAME: "Ai Nutrition Assistant Container"
-      APP_VERSION: "1.0.0-docker"
+      APP_NAME: "${APP_NAME:-Ai Nutrition Assistant Container}"
+      APP_VERSION: "${APP_VERSION:-1.0.0-docker}"
 
     volumes:
       - .:/app

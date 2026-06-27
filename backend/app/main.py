@@ -1,15 +1,21 @@
+from pathlib import Path
+
 from fastapi import FastAPI
-from pydantic import BaseModel
-from app.config import settings
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.config import settings
 from app.calculator import calculate_macros
 from app.schemas.nutrition import (
     NutritionRequest,
     NutritionResponse
 )
 
-app = FastAPI()
+app = FastAPI(title=settings.app_name, version=settings.app_version)
+static_dir = Path(__file__).resolve().parent / "static"
+
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 app.add_middleware(
     CORSMiddleware,
@@ -21,10 +27,7 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-    return {
-        "message": f"{settings.app_name} API is running",
-        "version": settings.app_version
-        }
+    return FileResponse(static_dir / "index.html")
 
 @app.get("/health")
 def health():
@@ -40,4 +43,3 @@ def calculate(data: NutritionRequest):
         goal = data.goal
     )
     return result
-
